@@ -9,12 +9,6 @@ class LinkedList:
 	def __init__(self):
 		self.head = None
 
-	def printList(self):
-		temp = self.head
-		while(temp):
-			print(temp.data)
-			temp = temp.next
-
 	#adding node at the front
 	def push(self, new_data):
 		new_node = Node(new_data)
@@ -43,6 +37,39 @@ class LinkedList:
 		new_node.next = prev_node.next
 		prev_node.next = new_node
 
+	#deleting a node
+	def delete_node(self, key):
+
+		temp = self.head
+
+		#see if node that is to be deleted is head
+		if(temp == key):
+			self.head = temp.next
+			temp = None
+			return
+
+		#iterate until you find the key
+		while(temp!= None):
+			if(temp.data == key):
+				break
+			prev = temp
+			temp = temp.next
+
+		#if key is not present in the list
+		if(temp == None):
+			return
+
+		prev.next = temp.next
+
+		temp = None #reset variables
+
+	def printList(self):
+		temp = self.head
+		while(temp):
+			print(temp.data)
+			temp = temp.next
+
+
 
 
 
@@ -59,5 +86,6 @@ if __name__ == '__main__':
 	llist.push(0)
 	llist.append(5)
 	llist.insert_node(second.next, 4)
+	llist.delete_node(3)
 
 	llist.printList()
